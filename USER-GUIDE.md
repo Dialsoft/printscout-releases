@@ -51,8 +51,11 @@ One row per printer.
   - *Network (TCP/IP)*: Windows sends jobs to a fixed network address. The most reliable kind.
   - *Network (WSD)*: Windows found the printer by itself. Convenient, but it drops offline more than any other kind.
   - *USB cable*, *Shared from another PC*, *Remote Desktop*, *Built into Windows*.
-- **Address**: the network address Windows sends the jobs to.
-- **Driver**: the driver's name.
+- **IP address**, **MAC address**, **Host name**: who the printer is on the network. The MAC address comes from the network test or
+  Find Printers; "(last seen)" means the printer did not answer this time and Print Scout is showing what it remembered.
+- **Model**: the best guess, straight from the printer itself if it answered the network test.
+- **Driver**, **Language**, **Driver date**, **Driver version**: the driver and the printer language it speaks (PCL 6, PostScript and so
+  on; see "Driver types" below).
 
 Red rows have a problem. Amber rows have a heads-up. Gray rows are Windows' built-in "printers" (Microsoft Print to PDF, XPS,
 OneNote, Fax), which are not checked unless you turn that on in Settings.
@@ -68,7 +71,9 @@ The four buttons under **Show in the Bottom List** change what it shows:
 - **Problems**: the findings.
 - **Print Queue**: every waiting job on every printer, who sent it, its status and how long it has waited.
 - **Windows Log**: the print errors Windows itself recorded, without digging through Event Viewer.
-- **Drivers**: every printer driver installed and how many printers use it.
+- **Drivers**: every printer driver installed, its maker, language, date, version, and how many printers use it.
+- **Network Printers**: every printer Find Printers found on the network, installed or not, with its IP address, MAC address, host name,
+  model, serial number and which printer on this PC uses it.
 
 ### The status bar
 When the last check ran, whether the Print Spooler is running, how many printers and waiting jobs there are, and how many network
@@ -78,7 +83,8 @@ printers have been tested.
 
 ## The Home tab
 
-### Check
+### Check and Network
+- **Find Printers**: searches the network for every printer. See "Finding printers on the network" below.
 - **Check Now**: checks everything again from scratch, including the network. Use it after you change something at the printer.
 - **Network Test**: tests the selected network printer (or all of them if none is selected). See "The network test" below.
 - **Details**: everything known about the selected printer on one page.
@@ -94,6 +100,7 @@ printers have been tested.
 - **Save Report**: everything, in a text file, for a ticket or a second opinion.
 - **Copy Summary**: a few lines to paste into a ticket, email or chat.
 - **History & Undo**: every change Print Scout has made on this PC. See below.
+- **Open Log File**: Print Scout's own dated record of what it found and what it changed.
 
 ---
 
@@ -111,6 +118,51 @@ Step 4 only reads from the printer. Print Scout never changes anything on a prin
 
 A printer that is switched off takes a few seconds to give up on, so the test is done in the background and the results appear when
 they are ready.
+
+---
+
+## Finding printers on the network
+
+**Find Printers** (Home tab) knocks on the print ports (9100, 515 and 631) of every address on this PC's network, plus the networks the
+installed printers are on, and asks each printer that answers what it is. The **Network Printers** view then lists every one:
+
+- IP address, MAC address and host name
+- model and serial number
+- which print ports it answers on
+- which printer on this PC uses it, or "not installed on this PC"
+
+Installed printers are green. Double-click any row for its details and its web page, and for how to add it to this PC (its address is
+copied for you).
+
+**Printers that moved.** Every time a printer answers, Print Scout remembers its MAC address and serial number. If the router later
+gives it a new address, Windows keeps sending jobs to the old one and the printer looks "Offline". Print Scout then searches the
+network by itself, recognizes the printer at its new address, and **Fix This** points Windows at it. To stop it happening again, give
+the printer a DHCP reservation in the router (Print Scout shows the MAC address to use).
+
+It takes about 5 to 30 seconds and only reads. Nothing is changed on any printer.
+
+---
+
+## Driver types
+
+Help → **Driver Types** explains all of this in more detail. The short version:
+
+| Language | What it is | Use it for |
+|---|---|---|
+| **PCL 6** (PCL XL, Kyocera KX) | HP's modern printer language, understood by almost every office laser printer | Everyday office printing. The usual best choice. |
+| **PCL 5 / 5e** | The older HP language | Older programs, forms and check printing that need it. |
+| **PostScript** (PS, BR-Script, KPDL) | Adobe's language; pages look exactly the same everywhere | PDFs, graphics, Macs, layouts that must not shift. |
+| **XPS / v4 / Class Driver** | Microsoft's newer, simpler drivers | Easy installs. Often missing stapling, trays, secure print and codes. |
+| **UFR II** | Canon's own language | Canon imageRUNNER copiers only. |
+| **Host-based (GDI)** | The PC draws each page | Cheap printers. Only the maker's exact driver works. |
+| **ESC/P** | Epson dot matrix | Multi-part forms. |
+| **ZPL / EPL / DPL** | Label printer languages | Key tags, parts and shipping labels. |
+
+- **Model-specific vs universal:** a universal driver (HP Universal Printing, Canon Generic Plus, Kyocera KX and others) covers many
+  models from one maker and is easier to manage across many PCs, at the cost of a few model-specific extras.
+- **Type 3 vs Type 4:** Type 3 is the maker's traditional driver; Type 4 is Microsoft's newer, simpler design.
+- **Driver date and version:** an old date is fine if the printer works. Update for a specific problem, after a Windows update breaks
+  printing, or for a security fix, and always from the maker's own site (**Tools → Find Driver**).
 
 ---
 
@@ -143,6 +195,22 @@ it: run Clear Stuck Jobs and look at the Windows Log view for the driver file it
 ### "The printer says: paper jam / out of paper / a door is open / out of toner"
 This came from the printer itself. Deal with it at the printer.
 
+### "The printer has moved to (new address)"
+The printer is answering at a new address with the same MAC address or serial number. **Fix This** points Windows at the new address
+and restarts the spooler. "A printer of the same model was found at…" is the same idea, but recognized only by model, so check it
+first.
+
+### "Driver is unavailable"
+The driver's files are missing. **Fix This** (or **Tools → Find Driver**) finds the driver on the maker's own website.
+
+### "Windows' detailed print log is switched off"
+Windows can write a line for every print job, but ships with it off. Switch it on for a printer that only fails now and then; after
+the next failure the **Windows Log** view shows exactly what happened.
+
+### "Print Scout is running as SYSTEM" / "as a different user"
+Many printers belong to the person, not the PC. If Print Scout is started from ScreenConnect Backstage, an RMM script, or "Run as
+different user", it cannot see that person's printers. Start it on their own desktop, as them.
+
 ### "Uses a WSD port"
 Not broken, but the least reliable kind of connection. If this printer keeps dropping offline, give it a fixed IP address and switch
 it to a Standard TCP/IP port.
@@ -161,9 +229,10 @@ Install the manufacturer's driver for that model.
 
 ## The Tools tab
 
-Shortcuts to Windows' own windows for the selected printer (**Open Queue**, **Properties**, **Printing Preferences**), and to
-**Printers & Scanners**, **Print Server** properties (drivers and ports), **Print Management**, the **printer's web page**, the
-**Windows Troubleshooter**, and Print Scout's **log file**.
+Shortcuts to Windows' own windows for the selected printer (**Open Queue**, **Properties**, **Printing Preferences**), **Find Driver**
+(searches the maker's own website for this model's driver), and to **Printers & Scanners**, the classic **Devices & Printers**, the
+**Add a Printer** wizard (choose "Add a printer using an IP address or hostname" for the most reliable kind of connection), **Print
+Server** properties (drivers and ports), **Print Management**, the **printer's web page**, and the **Windows Troubleshooter**.
 
 With **Show expert tools** switched on in Settings, an **Advanced** group appears. These buttons act on the selected printer whether
 or not Print Scout found anything wrong with it:
@@ -183,6 +252,8 @@ Print Scout never changes anything without asking, and it writes down everything
 **Home → History & Undo** lists every change with the date and time. Changes that flipped a switch can be ticked and put back:
 
 - SNMP status on a port
+- A port pointed at a printer's new address
+- Windows' detailed print log
 - Use Printer Offline
 - Paused / resumed
 - The default printer
@@ -203,7 +274,7 @@ Every setting takes effect the moment you click it.
 | Keep checking automatically | Re-checks the spooler, printers and jobs every 10 seconds | On |
 | Test network printers automatically | Network test at startup, on Check Now, after a fix, and every 2 minutes | On |
 | Ask each printer what is wrong (SNMP) | Adds step 4 to the network test | On |
-| Read Windows' print error log | Fills the Windows Log view and notes recent errors | On |
+| Read Windows' print logs | Fills the Windows Log view (errors, and every job if the detailed log is on) and notes recent errors | On |
 | Also check Windows' built-in printers | Includes Print to PDF, XPS, OneNote, Fax and PDF makers in the health check | Off |
 | Show expert tools | Shows the Advanced group on the Tools tab | Off |
 | Keep a log file | Writes findings and every change to a dated text file | On |
@@ -237,10 +308,13 @@ USB stick.
 
 - **Test an address before installing the printer:** `PrintScout.exe /nettest 192.168.1.50` runs the four-step network test against
   that address and shows the result. Add a community name after the address if the printer does not use `public`.
+- **Search a different network:** `PrintScout.exe /scanrange 192.168.20.0/24` makes Find Printers search only that range (for a printer
+  VLAN this PC can reach but is not on).
 - **See every kind of finding without a broken printer:** `PrintScout.exe /demo` shows made-up printers. Nothing on the PC is read or
   changed in demo mode.
 - **Where things are kept:** settings and the change history are in the registry under `HKCU\Software\Dialsoft\PrintScout`. The log
-  file is `%LOCALAPPDATA%\Dialsoft\PrintScout\PrintScout-log.txt`. Deleting both removes every trace of Print Scout.
+  file is `%LOCALAPPDATA%\Dialsoft\PrintScout\PrintScout-log.txt`. Remembered MAC addresses and serial numbers are under
+  `...\PrintScout\Known`. Deleting both removes every trace of Print Scout.
 - **What Clear Stuck Jobs does, exactly:** stops any service that depends on the spooler (such as Fax), stops the spooler, deletes the
   files in the spool folder, starts the spooler, and starts the dependent services again.
 

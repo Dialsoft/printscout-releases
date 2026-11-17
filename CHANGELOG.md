@@ -1,5 +1,17 @@
 # Print Scout release notes
 
+## 1.1.0 (2026-11-17)
+- Every printer now shows its IP address, MAC address and host name, its model, and its driver's printer language (PCL 6, PostScript and so on), date and version.
+- New Find Printers (Home tab): searches the network for every printer, installed on this PC or not, and lists each one's IP address, MAC address, host name, model, serial number and print ports in the new Network Printers view.
+- Moved printers: when a network printer stops answering, Print Scout searches the network and recognizes it at its new address by its MAC address or serial number. Fix This points Windows at the new address (undo from History & Undo).
+- "Driver is unavailable": spots printers whose driver files are missing.
+- New Find Driver (Tools tab, and Fix This for driver problems): works out the maker and model and searches the maker's own website for the driver.
+- New Driver Types guide (Help tab): PCL 6, PCL 5, PostScript, XPS/v4, UFR II, host-based, dot matrix and label printers explained in plain English, plus Type 3 vs Type 4 and universal drivers.
+- Windows' detailed print log (PrintService/Operational): Print Scout tells you when it is off, switches it on with one click, and shows every job from it in the Windows Log view next to the errors.
+- Warns when Print Scout runs as SYSTEM (for example from ScreenConnect Backstage or an RMM script) or as a different user than the person signed in, because their own printers are invisible to other accounts.
+- After Restart Spooler or Clear Stuck Jobs, offers a test page to prove printing works.
+- Tools tab: new Devices & Printers and Add a Printer buttons. Open Log File moved to the Home tab.
+
 ## 1.0.0 (2026-11-17)
 - First release. Checks the whole printing chain on a Windows PC and explains what is wrong in plain English.
 - Print Spooler check: is the service running, set to start automatically, and free of leftover job files?
