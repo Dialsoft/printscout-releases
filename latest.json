@@ -1,0 +1,8 @@
+{
+  "version": "1.0.0",
+  "published": "2026-11-17",
+  "notes": "\u2022 First release. Checks the whole printing chain on a Windows PC and explains what is wrong in plain English.\n\u2022 Print Spooler check: is the service running, set to start automatically, and free of leftover job files?\n\u2022 Every printer: paused, Use Printer Offline, error states, missing or generic driver, duplicate \"Copy 1\" printers, and the kind of connection (network address, WSD, USB, shared from another PC).\n\u2022 Every print queue: finds jobs stuck on Error or Deleting, and jobs that have been waiting too long.\n\u2022 Network test for network printers: name lookup, ping, print ports (9100, 515, 631) and web ports, then asks the printer itself (SNMP) about paper jams, empty trays, open doors, toner levels and page count.\n\u2022 Spots the classic \"shows Offline but is switched on\" cause (SNMP status on the port) and fixes it with one click.\n\u2022 Fix This: explains the selected problem and offers a safe one-click fix. Quick fixes for Restart Spooler, Clear Stuck Jobs and Test Page.\n\u2022 Print Queue, Windows Log (Windows' own print errors) and Drivers views in the bottom list.\n\u2022 History & Undo: every change Print Scout makes is recorded, and the switches it flips can be put back.\n\u2022 Save Report and Copy Summary for tickets, a log file, Tools tab with shortcuts to Windows' own printer windows, expert tools (off by default), automatic updates, Share tab, and detailed tooltips on every control.",
+  "exe": "https://raw.githubusercontent.com/Dialsoft/printscout-releases/main/PrintScout.exe",
+  "sha256": "dd8e429cff99e35f18d3589d4da79c566beceb23cc2ad9578c56ed6e8322b640",
+  "size": 357888
+}
