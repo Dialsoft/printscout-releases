@@ -154,9 +154,17 @@ likely first, and what to do:
 - Photos too dark / white areas tinted
 - How to run Color Calibration
 
-For HP Color LaserJet printers it gives HP's own steps: on the printer, **Setup → System Setup → Print Quality → Color Calibration →
-Calibrate Now**, or **Start Color Calibration** on the printer's web page, plus the **Print Quality Page** and **Supplies Status Page**
-from the printer's **Reports** menu. Buttons in Color Help open the printer's web page and its Printing Preferences.
+For HP Color LaserJet printers it gives HP's own steps for that model:
+
+| HP model | Color Calibration on the printer |
+|---|---|
+| Newer Color LaserJet Pro **MFP** 3301–3303, 4301–4303 | **Menu → Tools → Troubleshooting → Color Calibration → Start** |
+| Newer Color LaserJet Pro 4201–4203 (no scanner) | **Menu → Tools → Troubleshooting → Print Quality → Color Calibration → Calibrate Now** |
+| Older M-series (M255, M283, M479…) | **Setup → System Setup → Print Quality → Color Calibration → Calibrate Now** |
+
+On the newer models the printer's web page has a **Print Quality** section: **Tools** prints the Print Quality Diagnostic Report, and
+**Calibration** sets how often the printer calibrates by itself. On every model the **Supplies Status** report (Reports menu) shows the
+toner levels and whether each cartridge is genuine HP. Buttons in Color Help open the printer's web page and its Printing Preferences.
 
 **Faded colors with genuine toner** usually come down to settings, not the cartridges. Check the Supplies Status Page, make sure
 EconoMode / toner saving is off, set the paper type to match the paper, and use a quality setting other than Draft. Then run

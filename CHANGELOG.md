@@ -1,5 +1,9 @@
 # Print Scout release notes
 
+## 1.2.1 (2026-11-20)
+- Color Help now gives the right Color Calibration steps for HP's newer Color LaserJet Pro models (3301-3303, 4301-4303 and 4201-4203: Menu, Tools, Troubleshooting, Color Calibration) and keeps the older Setup, System Setup, Print Quality steps for M-series models such as the M283 and M479.
+- For the newer HP models it also points to the Print Quality section of the printer's web page (Print Quality Diagnostic Report and automatic calibration settings).
+
 ## 1.2.0 (2026-11-20)
 - New Test Pages window (Home tab, Test Pages): pick a printer and print Print Scout's own pages, with a preview of each.
 - Print Scout test page (black and white): the printer, driver, language, port, network address and PC it came from, gray steps, line widths, text sizes and a 6-inch ruler to catch shrunk pages.

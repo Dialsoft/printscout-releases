@@ -1,8 +1,8 @@
 {
-  "version": "1.2.0",
+  "version": "1.2.1",
   "published": "2026-11-20",
-  "notes": "\u2022 New Test Pages window (Home tab, Test Pages): pick a printer and print Print Scout's own pages, with a preview of each.\n\u2022 Print Scout test page (black and white): the printer, driver, language, port, network address and PC it came from, gray steps, line widths, text sizes and a 6-inch ruler to catch shrunk pages.\n\u2022 Color test pattern: each toner on its own, two-toner mixes, 10%-100% steps of every toner, neutral grays, smooth blends, color boxes inside black outlines to check the colors line up, and everyday colors. Notes on the page say what each part should look like.\n\u2022 Color calibration check page: 24 reference color patches, the lightest and darkest steps of every toner and a checklist of what each fault looks like. Print it before and after the printer's own Color Calibration.\n\u2022 \"Print in color\" option prints the color pages in color even when the driver is set to grayscale.\n\u2022 New Color Help: pick what you see (faded, a color missing, a tint, colored edges, black and white only, streaks, different from the screen, dark photos) and Print Scout explains the likely causes and what to do, with the exact Color Calibration steps for HP Color LaserJet printers.\n\u2022 New check: a color printer whose driver is set to print in black and white. New note when a color toner the printer reports is low.",
+  "notes": "\u2022 Color Help now gives the right Color Calibration steps for HP's newer Color LaserJet Pro models (3301-3303, 4301-4303 and 4201-4203: Menu, Tools, Troubleshooting, Color Calibration) and keeps the older Setup, System Setup, Print Quality steps for M-series models such as the M283 and M479.\n\u2022 For the newer HP models it also points to the Print Quality section of the printer's web page (Print Quality Diagnostic Report and automatic calibration settings).",
   "exe": "https://raw.githubusercontent.com/Dialsoft/printscout-releases/main/PrintScout.exe",
-  "sha256": "c5bab5dbee5eb9c11c5376fc269ccf0cc2dbe3f7b84ad7d57bc7021d90f7811d",
-  "size": 502272
+  "sha256": "2593067c9ae4cb0e723cf8a5d6aca5fbf51b66cd9928806745e0ccaf6ca9ee0c",
+  "size": 503296
 }
