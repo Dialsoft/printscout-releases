@@ -17,7 +17,7 @@ double-click it. It works on Windows 10 and Windows 11.
    - **Green**: everything Print Scout checks is fine.
 3. **Click the printer that will not print** in the top list, then click **Fix This**. Print Scout explains the problem and, if there
    is a safe fix, offers to do it. You are always asked first.
-4. **Still not printing, and the list is green?** Click **Test Page**. If the test page prints, the printer is fine and the trouble is in
+4. **Still not printing, and the list is green?** Click **Test Pages** and print Print Scout's test page. If the test page prints, the printer is fine and the trouble is in
    the program you were printing from.
 
 ---
@@ -94,7 +94,7 @@ printers have been tested.
 - **Restart Spooler**: stops and starts the Print Spooler. The "switch it off and on again" of printing. Waiting jobs are kept.
 - **Clear Stuck Jobs**: for a job that will not print and will not delete. Stops the spooler, deletes every waiting job file, starts
   the spooler. **All waiting jobs on all printers on this PC are removed**, so people need to print again.
-- **Test Page**: sends Windows' test page to the selected printer.
+- **Test Pages**: opens the Test Pages window. See "Test pages and color problems" below.
 
 ### Records
 - **Save Report**: everything, in a text file, for a ticket or a second opinion.
@@ -118,6 +118,49 @@ Step 4 only reads from the printer. Print Scout never changes anything on a prin
 
 A printer that is switched off takes a few seconds to give up on, so the test is done in the background and the results appear when
 they are ready.
+
+---
+
+## Test pages and color problems
+
+**Home → Test Pages** opens a window with a printer list, four kinds of page, and a preview of the chosen page.
+
+| Page | What it shows | Use it when |
+|---|---|---|
+| **Print Scout test page** (black and white) | The printer, driver, printer language, port, network address and PC it came from; gray steps; line widths; text sizes; a 6-inch ruler | You want proof that printing works, and a record of exactly which printer and driver did it |
+| **Color test pattern** | Each toner on its own; red, green and blue mixes; 10%–100% steps of every toner; neutral grays; smooth blends; color boxes inside black outlines; skin tones and other everyday colors | Colors look wrong, faded, tinted or misaligned |
+| **Color calibration check** | 24 reference color patches, the lightest (2%) and darkest (98%) steps of every toner, and a checklist of what each fault looks like | Before and after running the printer's own Color Calibration |
+| **Windows' own test page** | Windows' standard page | Print Scout's page will not print |
+
+Notes printed on each page say what every part should look like. Measure the ruler: if it is not exactly 6 inches, something is
+shrinking or enlarging the page.
+
+**Print in color** (on by default) asks the driver for color for that one page even if the printer is set to grayscale, so a color
+page tells you about the printer and not about a setting. Untick it to prove that a grayscale setting is what is turning pages black
+and white.
+
+### Color Help
+
+Click **Color Help** in the Test Pages window, pick what the printed pages look like, and Print Scout explains the likely causes, most
+likely first, and what to do:
+
+- Colors faded or washed out
+- One color missing (no reds, no blues…)
+- Everything has a tint
+- Colored edges, shadows or fuzzy outlines
+- Prints only in black and white
+- Streaks, lines, smudges or repeating marks
+- Colors different from the screen
+- Photos too dark / white areas tinted
+- How to run Color Calibration
+
+For HP Color LaserJet printers it gives HP's own steps: on the printer, **Setup → System Setup → Print Quality → Color Calibration →
+Calibrate Now**, or **Start Color Calibration** on the printer's web page, plus the **Print Quality Page** and **Supplies Status Page**
+from the printer's **Reports** menu. Buttons in Color Help open the printer's web page and its Printing Preferences.
+
+**Faded colors with genuine toner** usually come down to settings, not the cartridges. Check the Supplies Status Page, make sure
+EconoMode / toner saving is off, set the paper type to match the paper, and use a quality setting other than Draft. Then run
+Calibrate Now and print the Color Test Pattern again.
 
 ---
 
@@ -199,6 +242,13 @@ This came from the printer itself. Deal with it at the printer.
 The printer is answering at a new address with the same MAC address or serial number. **Fix This** points Windows at the new address
 and restarts the spooler. "A printer of the same model was found at…" is the same idea, but recognized only by model, so check it
 first.
+
+### "This color printer is set to print in black and white"
+The driver's default is grayscale, so everything prints without color. **Fix This** opens Printing Preferences: turn off "Print in
+Grayscale" on the Color (or Paper/Quality) tab. Leave it if the office set it on purpose to save toner.
+
+### "A color toner is low — colors may print faded"
+The printer itself reported a cyan, magenta or yellow cartridge at 15% or less. **Fix This** opens Color Help.
 
 ### "Driver is unavailable"
 The driver's files are missing. **Fix This** (or **Tools → Find Driver**) finds the driver on the maker's own website.
